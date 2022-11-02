@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress CheckTagEmptyBody -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Intro</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e6f6ca;
+        }
+
+        header {
+            width: 100%;
+            font-size: 250%;
+            font-family: serif;
+            text-align: center;
+            background-color: #d4ebaa;
+        }
+
+        .time-wrapper {
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/time.js"></script>
+</h:head>
+<h:body>
+    <header>
+        <span>Сущенко Роман Витальевич, группа P32131, вариант 3198</span>
+    </header>
+    <h:link outcome="jumpToMain">
+        Основная страница
+    </h:link>
+    <div class="time-wrapper">
+        <p>
+            <span id="date"></span>
+            <br/>
+            <span id="time"></span>
+        </p>
+    </div>
+</h:body>
+
+</html>

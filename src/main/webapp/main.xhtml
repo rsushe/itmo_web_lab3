@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress CheckTagEmptyBody -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Third laboratory</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e6f6ca;
+        }
+
+        header {
+            width: 100%;
+            font-size: 250%;
+            font-family: serif;
+            text-align: center;
+            background-color: #d4ebaa;
+        }
+
+        fieldset {
+            width: 400px;
+            font-size: large;
+            display: inline-block;
+            border-color: #6e9f1f;
+        }
+
+        legend {
+            text-align: center;
+        }
+
+        .result_table {
+            overflow-y: scroll;
+            border-collapse: collapse;
+        }
+
+        .result_table tr td,
+        .result_table tr th {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .result_table thead {
+            background-color: #869374;
+        }
+
+        .result_table tbody tr:nth-child(odd) {
+            background-color: #a3c46e;
+        }
+
+        .result_table tbody tr:nth-child(even) {
+            background-color: #ccef93;
+        }
+
+        .result_table thead tr:hover,
+        .result_table tbody tr:hover {
+            background-color: #465c21;
+            cursor: pointer;
+        }
+
+        .form-field {
+            margin-bottom: 3%;
+        }
+
+        .form-field input[type="text"] {
+            border: 1px solid black;
+            font-size: 85%;
+            border-radius: 6px;
+        }
+
+        .form-field input[type="radio"] {
+            width: 1.3em;
+            height: 1.3em;
+            background-color: white;
+            border-radius: 50%;
+            vertical-align: middle;
+            border: 1px solid black;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .form-field input[type="radio"]:checked {
+            background-color: #6e9f1f;
+        }
+
+        .form-field input:focus {
+            outline: none;
+        }
+
+        .form-field.error input {
+            border-color: red;
+        }
+
+        .form-field.success input {
+            border-color: green;
+        }
+
+        .form-field small {
+            color: red;
+        }
+
+        .submit_buttons input[type="submit"], .submit_buttons input[type="reset"], .submit_buttons input[type="button"] {
+            width: 40%;
+            padding: 1em;
+            margin-left: 0.5em;
+            background: #cce79f;
+            border: 1px solid black;
+            color: black;
+            text-transform: uppercase;
+        }
+
+        .submit_buttons input[type="submit"]:hover, .submit_buttons input[type="reset"]:hover, .submit_buttons input[type="button"]:hover {
+            background: #465c21;
+            cursor: pointer;
+        }
+
+        .submit_buttons input[type="submit"]:focus, .submit_buttons input[type="reset"]:focus, .submit_buttons input[type="button"]:focus {
+            outline: none;
+        }
+
+        .r_buttons {
+            margin-bottom: 3%;
+        }
+
+        .r_buttons input[type="button"] {
+            width: 35px;
+            height: 25px;
+            margin-left: 0.5em;
+            background: #cce79f;
+            border: 1px solid black;
+            color: black;
+            vertical-align: center;
+            text-transform: uppercase;
+        }
+
+        .r_buttons input.pressed {
+            background: #5a7b26;
+        }
+
+        .r_buttons input[type="button"]:hover {
+            background: #465c21;
+            cursor: pointer;
+        }
+
+        .r_buttons input[type="button"]:focus {
+            outline: none;
+        }
+
+        .data {
+            margin: 20px;
+            align-items: flex-start;
+            display: flex;
+        }
+
+        .left_data {
+            margin-right: 15px;
+            width: 800px;
+        }
+
+        .left_data #jxgbox {
+            width: 500px;
+            height: 300px;
+        }
+
+        .right_data {
+            width: 700px;
+        }
+    </style>
+
+    <script type="text/javascript" charset="UTF-8"
+            src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css"/>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/validate.js"></script>
+    <script type="text/javascript" src="js/graph.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</h:head>
+
+<body>
+    <header>
+            <span>Сущенко Роман Витальевич, группа P32131, вариант 3198</span>
+    </header>
+    <div class="data">
+        <div class="left_data">
+            <!-- graph div -->
+            <div id="jxgbox" class="jxgbox">
+            </div>
+            <!-- form div -->
+            <div>
+                <h:form method="post" id="form">
+                    <fieldset>
+                        <legend>Check hit</legend>
+                        <div class="form-field">
+                            <span>Choose X:</span>
+                            <h:selectOneMenu value="#{dotBean.x}" id="x_value">
+                                <f:selectItem itemValue="-2" itemLabel="-2"/>
+                                <f:selectItem itemValue="-1.5" itemLabel="-1.5"/>
+                                <f:selectItem itemValue="-1" itemLabel="-1"/>
+                                <f:selectItem itemValue="-0.5" itemLabel="-0.5"/>
+                                <f:selectItem itemValue="0" itemLabel="0"/>
+                                <f:selectItem itemValue="0.5" itemLabel="0.5"/>
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="1.5" itemLabel="1.5"/>
+                            </h:selectOneMenu>
+                            <div>
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <span>Enter Y:</span>
+                            <h:inputText value="#{dotBean.y}" id="y_value"/>
+                            <div>
+                                <small></small>
+                            </div>
+                        </div>
+                        <div class="r_buttons">
+                            <span>Choose R:</span>
+                            <h:commandButton type="button" value="1"/>
+                            <h:commandButton type="button" value="1.5"/>
+                            <h:commandButton type="button" value="2"/>
+                            <h:commandButton type="button" value="2.5"/>
+                            <h:commandButton type="button" value="3"/>
+                            <h:inputHidden id="r_value" value="#{dotBean.r}"/>
+                            <div>
+                                <small></small>
+                            </div>
+                        </div>
+                        <h:inputHidden id="timezone" value="${dotBean.timezone}"/>
+                        <div class="submit_buttons">
+                            <h:commandButton value="Отправить" action="#{dotBean.processRequest()}" type="submit" onclick="set_timezone()">
+                                <f:ajax execute="x_value y_value r_value timezone" render="table"/>
+                            </h:commandButton>
+                        </div>
+                    </fieldset>
+                </h:form>
+            </div>
+        </div>
+        <div class="right_data">
+            <h:dataTable styleClass="result_table" value="#{dotBean.listContainer.dotsList}" var="entry" id="table">
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    <h:outputText value="#{entry.x}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    <h:outputText value="#{entry.y}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    <h:outputText value="#{entry.r}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Hit</f:facet>
+                    <h:outputText value="#{entry.hit}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Local time</f:facet>
+                    <h:outputText value="#{entry.creationDate}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Script working time</f:facet>
+                    <h:outputText value="#{entry.workingTime}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </div>
+</body>
+
+</html>
