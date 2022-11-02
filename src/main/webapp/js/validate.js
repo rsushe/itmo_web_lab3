@@ -55,16 +55,13 @@ function check_y() {
 }
 
 function check_r() {
-    let valid;
-
-    const rButtons = document.querySelectorAll('input[name="r"]:checked');
-    if (rButtons.length === 1) {
-        showSuccess(rButtons[0]);
-        valid = true;
-    } else {
-        showError(document.querySelector('input[name="r"]'), "Please, select any r value");
-        valid = false;
-    }
+    let valid = false;
+    $('.r_buttons input[type="button"]').each(function () {
+        let currentButton = $(this);
+        if (currentButton.hasClass("pressed")) {
+            valid = true;
+        }
+    });
     return valid;
 }
 

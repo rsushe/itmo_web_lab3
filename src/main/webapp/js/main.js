@@ -1,4 +1,6 @@
 let board;
+let points = [];
+let serverPoints = [];
 
 function test(data) {
     console.log(data);
@@ -12,15 +14,29 @@ $(document).ready(function () {
     set_timezone();
     board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-6, 6, 6, -6], axis: true, showCopyright: false});
 
-    let rInput = $('input[name="r"]');
+    board.on("down", function (event) {
+        if (event.button === 2 || event.target.className === 'JXG_navigation_button') {
+            return;
+        }
+        if (check_r()) {
+            let coords = board.getUsrCoordsOfMouse(event);
+            console.log(coords[0] + " " + coords[1])
+            $('[id="form:x_value"]').val(coords[0]);
+            $('[id="form:y_value"]').val(coords[1]);
+            $('[id="form:r_value"]').val($('.r_buttons input.pressed').val());
+            console.log($('[id="form:x_value"]').val() + " " + $('[id="form:y_value"]').val() + " " + $('[id="form:r_value"]').val())
+            $('[id="form:j_idt54"]').click();
+        }
+        event.preventDefault();
+    });
 
-    let pointsById = {};
-    rInput.each(function () {
-        pointsById[$(this).val()] = [];
+    $('[id="form:selector"]').on("change", function () {
+        $('[id="form:x_value"]').val($(this).val());
     });
 
     let drawnObjects = []
     $('.r_buttons input[type="button"]').click(function () {
+        clearPoints();
         let pressedButton = $(this);
         $('.r_buttons input[type="button"]').each(function () {
             let currentButton = $(this);
@@ -45,9 +61,8 @@ $(document).ready(function () {
             let triangle = createTriangle(board, r);
             let circle = createCircle(board, r);
             drawnObjects = [rectangle, triangle, circle];
+
+            updatePoints();
         }
     });
-
-    setCurrentDateTime();
-    setInterval(setCurrentDateTime, DELAY);
 });

@@ -34,8 +34,26 @@ function clearFigures(board, drawnObjects) {
     }
 }
 
+function clearPoints() {
+    for (const point of points) {
+        board.removeObject(point);
+    }
+    points = []
+}
+
+function drawPointsByR(r) {
+    for (let i = 0; i < serverPoints.length; i++) {
+        let serverPoint = serverPoints[i];
+        console.log(r + " " + serverPoint.r + " " + (r === serverPoint.r))
+        if (parseFloat(r) === serverPoint.r) {
+            let point = createPoint(board, serverPoint.x, serverPoint.y, serverPoint.r, serverPoint.hit);
+            points.push(point);
+        }
+    }
+}
+
 function createPoint(board, x, y, hit) {
     let color = hit ? "#32CD32" : "#FF0000";
-    return board.create("point", [x, y], {name: '', fixed: true, visible: false, fillColor: color, fillOpacity: 1,
+    return board.create("point", [x, y], {name: '', fixed: true, fillColor: color, fillOpacity: 1,
     strokewidth: 0});
 }
