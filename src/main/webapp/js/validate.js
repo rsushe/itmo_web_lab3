@@ -25,7 +25,7 @@ function showSuccess(input) {
 function check_x() {
     let valid;
 
-    const xButtons = document.querySelectorAll('input[name="x"]:checked');
+    const xButtons = document.querySelectorAll('input[id="form:x_value"]:checked');
     if (xButtons.length === 1) {
         showSuccess(xButtons[0]);
         valid = true;
@@ -66,6 +66,7 @@ function check_r() {
 }
 
 function validate_form() {
+    set_timezone();
     let isXValid = check_x(), isYValid = check_y(), isRValid = check_r();
     return isXValid && isYValid && isRValid;
 }

@@ -44,9 +44,9 @@ function clearPoints() {
 function drawPointsByR(r) {
     for (let i = 0; i < serverPoints.length; i++) {
         let serverPoint = serverPoints[i];
-        console.log(r + " " + serverPoint.r + " " + (r === serverPoint.r))
+        console.log(r + " " + serverPoint.r + " " + (parseFloat(r) === serverPoint.r) + " " + serverPoint.hit)
         if (parseFloat(r) === serverPoint.r) {
-            let point = createPoint(board, serverPoint.x, serverPoint.y, serverPoint.r, serverPoint.hit);
+            let point = createPoint(board, serverPoint.x, serverPoint.y, serverPoint.hit);
             points.push(point);
         }
     }

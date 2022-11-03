@@ -12,6 +12,7 @@ target/
 *.iml
 *.ipr
 .idea/vcs.xml
+.idea/artifacts
 
 ### Eclipse ###
 .apt_generated

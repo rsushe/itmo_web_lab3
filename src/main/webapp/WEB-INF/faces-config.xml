@@ -19,7 +19,7 @@
         <from-view-id>main.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>jumpToIndex</from-outcome>
-            <to-view-id>index.xhtml</to-view-id>
+            <to-view-id>intro.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

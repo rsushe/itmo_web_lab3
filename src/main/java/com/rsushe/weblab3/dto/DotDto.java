@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class DotDTO {
+public class DotDto {
     private double x;
     private double y;
     private double r;

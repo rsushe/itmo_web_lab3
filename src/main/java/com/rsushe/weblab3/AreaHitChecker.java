@@ -15,6 +15,6 @@ public class AreaHitChecker implements HitChecker {
     }
 
     private boolean isHitTriangle(double x, double y, double r) {
-        return x <= 0 && y >= 0 && y - x - r >= 0;
+        return x <= 0 && y >= 0 && y - x - r <= 0;
     }
 }

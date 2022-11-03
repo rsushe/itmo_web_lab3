@@ -11,6 +11,7 @@ function set_timezone() {
 }
 
 $(document).ready(function () {
+    $('[id="form:x_value"]').val(-2);
     set_timezone();
     board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-6, 6, 6, -6], axis: true, showCopyright: false});
 
@@ -20,17 +21,20 @@ $(document).ready(function () {
         }
         if (check_r()) {
             let coords = board.getUsrCoordsOfMouse(event);
-            console.log(coords[0] + " " + coords[1])
-            $('[id="form:x_value"]').val(coords[0]);
-            $('[id="form:y_value"]').val(coords[1]);
+            console.log(coords[0] + " " + coords[1]);
+            let x = $('[id="form:x_value"]').val(), y = $('[id="form:y_value"]').val();
+            $('[id="form:x_value"]').val(coords[0].toFixed(2));
+            $('[id="form:y_value"]').val(coords[1].toFixed(2));
             $('[id="form:r_value"]').val($('.r_buttons input.pressed').val());
             console.log($('[id="form:x_value"]').val() + " " + $('[id="form:y_value"]').val() + " " + $('[id="form:r_value"]').val())
-            $('[id="form:j_idt54"]').click();
+            $('#form input[type="submit"]').click();
+            $('[id="form:x_value"]').val(x);
+            $('[id="form:y_value"]').val(y);
         }
         event.preventDefault();
     });
 
-    $('[id="form:selector"]').on("change", function () {
+    $('[id="form:selector"]').on("click", function () {
         $('[id="form:x_value"]').val($(this).val());
     });
 

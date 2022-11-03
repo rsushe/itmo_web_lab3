@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="web-lab3-1.0-SNAPSHOT.war">
+    <root id="archive" name="lab3.war">
       <element id="artifact" artifact-name="web-lab3:war exploded" />
     </root>
   </artifact>

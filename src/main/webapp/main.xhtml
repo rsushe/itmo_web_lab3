@@ -186,9 +186,15 @@
 </h:head>
 
 <body>
-<header>
-    <span>Сущенко Роман Витальевич, группа P32131, вариант 3198</span>
-</header>
+<div>
+    <header>
+        <span>Сущенко Роман Витальевич, группа P32131, вариант 3198</span>
+        <h:link outcome="jumpToIndex">
+            Вступительная страница
+        </h:link>
+    </header>
+</div>
+
 <div class="data">
     <div class="left_data">
         <!-- graph div -->
@@ -202,7 +208,7 @@
                     <div class="form-field">
                         <span>Choose X:</span>
                         <h:inputHidden id="x_value" value="#{dotBean.x}"/>
-                        <h:selectOneMenu id="selector">
+                        <h:selectOneMenu id="selector" required="true">
                             <f:selectItem itemValue="-2" itemLabel="-2"/>
                             <f:selectItem itemValue="-1.5" itemLabel="-1.5"/>
                             <f:selectItem itemValue="-1" itemLabel="-1"/>
@@ -218,18 +224,20 @@
                     </div>
                     <div class="form-field">
                         <span>Enter Y:</span>
-                        <h:inputText value="#{dotBean.y}" id="y_value"/>
+                        <h:inputText value="#{dotBean.y}" id="y_value" required="true">
+                            <f:validateDoubleRange minimum="-5" maximum="3"/>
+                        </h:inputText>
                         <div>
                             <small></small>
                         </div>
                     </div>
                     <div class="r_buttons">
                         <span>Choose R:</span>
-                        <h:commandButton type="button" value="1.0"/>
+                        <h:commandButton type="button" value="1"/>
                         <h:commandButton type="button" value="1.5"/>
-                        <h:commandButton type="button" value="2.0"/>
+                        <h:commandButton type="button" value="2"/>
                         <h:commandButton type="button" value="2.5"/>
-                        <h:commandButton type="button" value="3.0"/>
+                        <h:commandButton type="button" value="3"/>
                         <h:inputHidden id="r_value" value="#{dotBean.r}"/>
                         <div>
                             <small></small>
@@ -241,17 +249,19 @@
                                          onclick="set_timezone()">
                             <f:ajax execute="x_value y_value r_value timezone" render="table script"/>
                         </h:commandButton>
+                        <h:commandButton value="Очистить" action="#{listContainer.removeUserDots()}" type="button">
+                            <f:ajax render="table script"/>
+                        </h:commandButton>
                     </div>
                     <h:panelGroup id="script">
                         <h:outputScript>
                             function updatePoints() {
                             clearPoints();
                             serverPoints = [
-                                <ui:repeat value="#{dotBean.listContainer.dotsList}" var="point">
-                                    {x: #{point.x}, y: #{point.y}, r: #{point.r}, hit: #{point.hit}},
-                                </ui:repeat>
+                            <ui:repeat value="#{listContainer.dotsList}" var="point">
+                                {x: #{point.x}, y: #{point.y}, r: #{point.r}, hit: #{point.hit}},
+                            </ui:repeat>
                             ];
-                            console.log(serverPoints);
                             drawPointsByR($('.r_buttons input.pressed').val());
                             }
                             updatePoints();
@@ -264,7 +274,7 @@
         </div>
     </div>
     <div class="right_data">
-        <h:dataTable styleClass="result_table" value="#{dotBean.listContainer.dotsList}" var="entry" id="table">
+        <h:dataTable styleClass="result_table" value="#{listContainer.dotsList}" var="entry" id="table">
             <h:column>
                 <f:facet name="header">X</f:facet>
                 <h:outputText value="#{entry.x}"/>
