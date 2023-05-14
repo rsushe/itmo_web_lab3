@@ -1,0 +1,26 @@
+<ivy-module version="2.0">
+    <info organisation="org.apache" module="hello-ivy"/>
+    <dependencies>
+        <dependency org="com.sun.faces" name="jsf-api" rev="2.2.20"/>
+
+        <dependency org="javax.servlet" name="javax.servlet-api" rev="4.0.1"/>
+
+        <dependency org="org.hibernate" name="hibernate-core" rev="5.6.1.Final" />
+
+        <!--        <dependency org="org.hibernate" name="hibernate-validator" rev="6.2.0.Final" />-->
+
+        <dependency org="org.primefaces" name="primefaces" rev="12.0.0"/>
+
+        <dependency org="org.postgresql" name="postgresql" rev="42.5.0"/>
+
+        <dependency org="org.projectlombok" name="lombok" rev="1.18.24"/>
+
+        <dependency org="junit" name="junit" rev="4.13.2"/>
+
+        <!--        <dependency org="com.sun.xml.bind" name="jaxb-core" rev="2.3.0.1"/>-->
+
+        <!--        <dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.3.1"/>-->
+
+        <!--        <dependency org="javax.xml.bind" name="jaxb-api" rev="2.3.1"/>-->
+    </dependencies>
+</ivy-module>

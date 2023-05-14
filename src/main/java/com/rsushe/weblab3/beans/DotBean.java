@@ -3,10 +3,10 @@ package com.rsushe.weblab3.beans;
 import com.rsushe.weblab3.Service;
 import lombok.*;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import java.io.Serializable;
 
 @ManagedBean(name = "dotBean")

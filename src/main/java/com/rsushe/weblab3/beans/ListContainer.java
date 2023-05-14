@@ -5,11 +5,11 @@ import com.rsushe.weblab3.dto.DotDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+import jakarta.faces.bean.ManagedBean;
+import jakarta.faces.bean.ManagedProperty;
+import jakarta.faces.bean.SessionScoped;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpSession;
 import java.util.LinkedList;
 import java.util.List;
 

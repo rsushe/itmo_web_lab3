@@ -2,7 +2,7 @@ package com.rsushe.weblab3.dto;
 
 import lombok.*;
 
-import javax.faces.context.FacesContext;
+import jakarta.faces.context.FacesContext;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
