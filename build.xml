@@ -18,7 +18,7 @@
         <echo>============== COMPILE STARTED ==============</echo>
         <mkdir dir="${binary-classes}"/>
         <javac destdir="${binary-classes}" srcdir="${main}" includeantruntime="false">
-<!--            <classpath refid="build-path"/>-->
+            <classpath refid="build-path"/>
         </javac>
 
         <echo>============== COMPILE TEST CLASSES ==============</echo>
@@ -65,6 +65,15 @@
         </junit>
         <echo>============== SUCCESSFULLY TESTED ==============</echo>
     </target>
+
+    <target name="music" depends="build">
+        <taskdef name="sound" classname="org.apache.tools.ant.taskdefs.optional.sound.SoundTask"/>
+        <sound>
+        </sound>
+<!--        <antcall target="build"/>-->
+        <echo>============== MUSIC STARTED ==============</echo>
+    </target>
+
 
 
 </project>

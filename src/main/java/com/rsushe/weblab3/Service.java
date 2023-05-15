@@ -7,9 +7,9 @@ import com.rsushe.weblab3.entity.Dot;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.faces.bean.ManagedProperty;
-import jakarta.faces.bean.ApplicationScoped;
-import jakarta.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import java.time.*;
 
 @ManagedBean(name = "service", eager = true)

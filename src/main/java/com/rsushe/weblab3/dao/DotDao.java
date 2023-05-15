@@ -5,8 +5,8 @@ import com.rsushe.weblab3.entity.Dot;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import jakarta.faces.bean.ApplicationScoped;
-import jakarta.faces.bean.ManagedBean;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "dotDao")
 @ApplicationScoped
