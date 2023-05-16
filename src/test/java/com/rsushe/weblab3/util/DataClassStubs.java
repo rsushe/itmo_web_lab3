@@ -13,4 +13,8 @@ public class DataClassStubs {
         return new Dot(SESSION_ID_STUB + random.nextInt(), x, y, r, hit, date, random.nextDouble());
     }
 
+    public static Dot createDotStub(String sessionId, double x, double y, double r, boolean hit, LocalDateTime date) {
+        return new Dot(sessionId, x, y, r, hit, date, random.nextDouble());
+    }
+
 }
