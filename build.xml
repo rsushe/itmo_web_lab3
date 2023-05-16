@@ -67,11 +67,11 @@
     </target>
 
     <target name="music" depends="build">
-        <taskdef name="sound" classname="org.apache.tools.ant.taskdefs.optional.sound.SoundTask"/>
-        <sound>
-        </sound>
-<!--        <antcall target="build"/>-->
-        <echo>============== MUSIC STARTED ==============</echo>
+        <exec executable="/bin/bash">
+            <arg value="-c"/>
+            <arg value="${musicPlayer} ${music}"/>
+        </exec>
+        <echo message="--- MUSIC DONE ---"/>
     </target>
 
 
