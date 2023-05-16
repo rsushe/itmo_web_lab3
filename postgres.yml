@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  prod:
+    image: postgres
+    environment:
+      POSTGRES_DB: dots
+      POSTGRES_USER: rvsushe
+      POSTGRES_PASSWORD: rvsushe
+    ports:
+      - 5432:5432
+  test:
+    image: postgres
+    environment:
+      POSTGRES_DB: dots_test
+      POSTGRES_USER: rvsushe
+      POSTGRES_PASSWORD: rvsushe
+    ports:
+      - 5433:5432

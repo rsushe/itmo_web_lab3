@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/dots?useSSL=false</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5433/dots_test?useSSL=false</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.username">rvsushe</property>
         <property name="connection.password">rvsushe</property>
