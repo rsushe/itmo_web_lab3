@@ -1,6 +1,12 @@
 <project name="web_lab_3" xmlns:ivy="antlib:org.apache.ivy.ant" default="build">
     <property file="build.properties"/>
 
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="lib/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+
     <target name="resolve">
         <ivy:retrieve/>
     </target>
@@ -15,45 +21,45 @@
     </path>
 
     <target name="compile">
-        <echo>============== COMPILE STARTED ==============</echo>
+        <echo>--- COMPILE STARTED ---</echo>
         <mkdir dir="${binary-classes}"/>
         <javac destdir="${binary-classes}" srcdir="${main}" includeantruntime="false">
             <classpath refid="build-path"/>
         </javac>
 
-        <echo>============== COMPILE TEST CLASSES ==============</echo>
+        <echo>--- COMPILE TEST CLASSES ---</echo>
         <mkdir dir="${binary-tests}"/>
         <javac destdir="${binary-tests}" srcdir="${test}" includeantruntime="false">
             <classpath refid="test-path"/>
         </javac>
-        <echo>============== SUCCESSFULLY COMPILED ==============</echo>
+        <echo>--- SUCCESSFULLY COMPILED ---</echo>
     </target>
 
     <target name="build" depends="compile">
-        <echo>============== BUILD STARTED ==============</echo>
+        <echo>--- BUILD STARTED ---</echo>
         <mkdir dir="${out}"/>
         <war destfile="${out}/${ant.project.name}.war" webxml="${web}">
             <classes dir="${binary-classes}"/>
             <lib dir="${lib}"/>
             <fileset dir="${main}/webapp"/>
             <manifest>
-                <attribute name="Created-By" value="Web" />
-                <attribute name="Manifest-Version" value="1.0" />
-                <attribute name="Main-Class" value="NoClass" />
+                <attribute name="Created-By" value="Web"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Main-Class" value="NoClass"/>
             </manifest>
         </war>
-        <echo>============== SUCCESSFULLY BUILT ==============</echo>
+        <echo>--- SUCCESSFULLY BUILT ---</echo>
     </target>
 
     <target name="clean">
-        <echo>============== CLEAN STARTED ==============</echo>
+        <echo>--- CLEAN STARTED ---</echo>
         <delete dir="${build}"/>
         <delete dir="${out}"/>
-        <echo>============== SUCCESSFULLY CLEANED ==============</echo>
+        <echo>--- SUCCESSFULLY CLEANED ---</echo>
     </target>
 
     <target name="test" depends="build">
-        <echo>============== TEST STARTED ==============</echo>
+        <echo>--- TEST STARTED ---</echo>
         <junit printsummary="yes" haltonerror="yes">
             <classpath>
                 <pathelement path="${binary-classes}"/>
@@ -63,7 +69,7 @@
             <test name="${test_name}"/>
             <formatter type="plain" usefile="false"/>
         </junit>
-        <echo>============== SUCCESSFULLY TESTED ==============</echo>
+        <echo>--- SUCCESSFULLY TESTED --- </echo>
     </target>
 
     <target name="music" depends="build">
@@ -74,6 +80,31 @@
         <echo message="--- MUSIC DONE ---"/>
     </target>
 
-
+    <target name="diff">
+        <for list="${classes}" param="class" delimiter=",">
+            <sequential>
+                <echo>@{class}</echo>
+                <exec executable="/bin/bash" outputproperty="diff">
+                    <arg value="-c"/>
+                    <arg value="svn status | grep @{class}"/>
+                    <!--                    <arg value="ls -R | grep @{class}"/>-->
+                </exec>
+                <echo>here = ${diff}</echo>
+                <if>
+                    <length string="${diff}" length="0" trim="true"/>
+                    <then>
+                        <echo>Committing</echo>
+                    </then>
+                    <else>
+                        <fail status="1" message="Changes occurred" />
+                    </else>
+                </if>
+            </sequential>
+        </for>
+        <exec executable="/bin/bash">
+            <arg value="-c"/>
+            <arg value="svn add *; svn commit -m &quot;diff commit&quot; --username=ant_commiter"/>
+        </exec>
+    </target>
 
 </project>
